@@ -24,7 +24,7 @@ router.post('/', async (req, res) => {
 			// TODO: encrypt id
 			res.cookie('userId', user.id)
 			// redirect to the homepage (in the future this could redirect elsewhere)
-			res.redirect('/')
+			res.redirect('/users/profile')
 		} else {
 		// if the user was not created
 			// re render the login form with a message for the user
@@ -61,8 +61,8 @@ router.post('/login', async (req, res) => {
 		if (foundUser.password ===  req.body.password) {
 			// if they match -- send the user a cookie! to log them in
 			res.cookie('userId', foundUser.id)
-			// TODO: redirect to profile
-			res.redirect('/') 
+			// redirect to profile
+			res.redirect('/users/profile') 
 		} else {
 			// if not -- render the login form with a message
 			res.render('users/login.ejs', { msg })
@@ -80,4 +80,16 @@ router.get('/logout', (req, res) => {
 	// redirect to root
 	res.redirect('/')
 })
+
+router.get('/profile', (req, res) => {
+	// check if user is authorized
+	if (!res.locals.user) {
+		// if the user is not authorized, ask them to log in
+		res.render('users/login.ejs', { msg: 'please log in to continue' })
+		return // end the route here
+	}
+
+	res.render('users/profile', { user: res.locals.user })
+})
+
 module.exports = router
