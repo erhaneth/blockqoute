@@ -17,6 +17,9 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
+// controllers
+app.use('/users', require('./controllers/users'))
+
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
   rowdyRes.print()
