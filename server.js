@@ -5,6 +5,7 @@ const rowdy = require('rowdy-logger')
 const cookieParser = require('cookie-parser')
 const db = require('./models')
 const cryptoJS = require('crypto-js')
+const axios = require('axios')
 
 // app config
 const PORT = process.env.PORT || 3000
@@ -55,6 +56,14 @@ app.use(async (req, res, next) => {
 app.get('/', (req, res) => {
   // console.log(res.locals)
   res.render('index')
+})
+
+app.get('/results', (req, res) => {
+  axios.get(`https://api.quotable.io/random?maxLength=50#`)
+    .then(response => {
+      res.render('results.ejs', { quote: response.data })
+    })
+    .catch(console.log())
 })
 
 // controllers

@@ -11,6 +11,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "axios": "^0.27.2",
     "bcryptjs": "^2.4.3",
     "cookie-parser": "^1.4.6",
     "crypto-js": "^4.1.1",
@@ -19,6 +20,7 @@
     "express": "^4.17.1",
     "express-ejs-layouts": "^2.5.0",
     "pg": "^8.5.1",
+    "quotegarden": "^1.1.0",
     "rowdy-logger": "^1.0.2",
     "sequelize": "^6.5.0"
   }
