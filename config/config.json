@@ -1,6 +1,6 @@
 {
   "development": {
-    "database": "auth_intro_lesson",
+    "database": "blockqoute",
     "host": "127.0.0.1",
     "dialect": "postgres"
   }
