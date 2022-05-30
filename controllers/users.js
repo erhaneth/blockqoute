@@ -53,6 +53,7 @@ router.post('/login', async (req, res) => {
 			where: { email: req.body.email }
 		})
 		const msg = 'bad login credentials, you are not authenticated!'
+		
 		// if the user is not found -- display the login form and 
 		if (!foundUser) {
 			console.log('email not found on login')
@@ -64,11 +65,13 @@ router.post('/login', async (req, res) => {
 		// hash the password from the req.body and compare it to the db password
 		const compare = bcrypt.compareSync(req.body.password, foundUser.password)
 		if (compare) {
+			
+			console.log(compare)
 			// if they match -- send the user a cookie! to log them in
-			const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
-			res.cookie('userId', encryptedId)
+			// const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
+			// res.cookie('userId', encryptedId)
 			// redirect to profile
-			res.redirect('/users/profile') 
+			res.redirect('/home') 
 		} else {
 			// if not -- render the login form with a message
 			res.render('users/login.ejs', { msg })

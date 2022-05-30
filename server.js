@@ -12,7 +12,7 @@ const PORT = process.env.PORT || 3000
 const app = express()
 app.set('view engine', 'ejs')
 
-// middlewares
+// middle wares
 const rowdyRes = rowdy.begin(app)
 app.use(require('express-ejs-layouts'))
 app.use(express.urlencoded({ extended: false }))
@@ -58,10 +58,10 @@ app.get('/', (req, res) => {
   res.render('index')
 })
 
-app.get('/results', (req, res) => {
+app.get('/home', (req, res) => {
   axios.get(`https://api.quotable.io/random?maxLength=50#`)
     .then(response => {
-      res.render('results.ejs', { quote: response.data })
+      res.render('home.ejs', { quote: response.data })
     })
     .catch(console.log())
 })
