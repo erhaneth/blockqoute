@@ -7,6 +7,9 @@ const db = require('./models')
 const cryptoJS = require('crypto-js')
 const axios = require('axios')
 
+//global variables
+// const post = ""
+
 // app config
 const PORT = process.env.PORT || 3000
 const app = express()
@@ -40,7 +43,7 @@ app.use(async (req, res, next) => {
       const decryptedId = cryptoJS.AES.decrypt(userId, process.env.ENC_KEY).toString(cryptoJS.enc.Utf8)
       const user = await db.user.findByPk(decryptedId)
       // mount the found user on the res.locals so that later routes can access the logged in user
-      // any value on the res.locals is availible to the layout.ejs
+      // any value on the res.locals is available to the layout.ejs
       res.locals.user = user
     } else {
       // the user is explicitly not logged in
@@ -57,18 +60,28 @@ app.get('/', (req, res) => {
   // console.log(res.locals)
   res.render('index')
 })
-
-app.get('/home', (req, res) => {
-  axios.get(`https://api.quotable.io/random?maxLength=50#`)
+//pulling data from api
+app.get('/compose', (req, res) => {
+  axios.get(`https://api.quotable.io/random?maxLength=80#`)
     .then(response => {
-      res.render('home.ejs', { quote: response.data })
+      res.render('compose.ejs', { quote: response.data })
     })
     .catch(console.log())
 })
-app.get("/compose", function(req, res){
+
+app.get("/compose", (req, res) => {
   res.render("compose");
 });
+//redirect the user once the post has been created
+app.post("/compose", (req, res ) => {
+  const post = {
+    content: req.body.postBody
+  };
 
+
+  res.redirect("compose");
+
+});
 // controllers
 app.use('/users', require('./controllers/users'))
 

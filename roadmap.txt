@@ -1,7 +1,10 @@
-1. create navbar that has all links to pages.
+1. create a multi-line text area in the page of "posts"
+ -fix the error ?
+2. create navbar that has all links to pages.
+
 - this navbar will be showing both home.ejs and post.ejs
+
 - create partial folder that include header and footer.ejs
 
-2. create a multi-line text area in the page of posts
 
 3. 
