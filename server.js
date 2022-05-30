@@ -65,6 +65,9 @@ app.get('/home', (req, res) => {
     })
     .catch(console.log())
 })
+app.get("/compose", function(req, res){
+  res.render("compose");
+});
 
 // controllers
 app.use('/users', require('./controllers/users'))
