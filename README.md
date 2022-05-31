@@ -8,9 +8,9 @@ API:<h2><a href="https://api.quotable.io/random?maxLength=50#">Quotable</a></h2>
 <details>
 <summary>Wireframes</summary>
 
-![blockquoto](./images/login.jpg)
-![blockquoto](./images/home.jpg)
-![blockquoto](./images/posts.jpg)
+![blockquote](./images/login.jpg)
+![blockquote](./images/home.jpg)
+![blockquote](./images/posts.jpg)
 </details>
 <details>
 
@@ -60,7 +60,7 @@ API:<h2><a href="https://api.quotable.io/random?maxLength=50#">Quotable</a></h2>
 ![Express](https://img.shields.io/badge/-Express-333?style=flat&logo=express)
 ![Node.js](https://img.shields.io/badge/-Node.js-333?style=flat&logo=node.js)
 ![Postgres](https://img.shields.io/badge/postgres-%23316192.svg?style=for-the-badge&logo=postgresql&logoColor=white)
-![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white)
+<!-- ![Bootstrap](https://img.shields.io/badge/Bootstrap-563D7C?style=for-the-badge&logo=bootstrap&logoColor=white) -->
 ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)
 ![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
 ![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)

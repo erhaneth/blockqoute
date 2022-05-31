@@ -6,6 +6,7 @@ const cookieParser = require('cookie-parser')
 const db = require('./models')
 const cryptoJS = require('crypto-js')
 const axios = require('axios')
+const { randomQuote } = require('quotegarden')
 
 //global variables
 // const post = ""
@@ -60,7 +61,7 @@ app.get('/', (req, res) => {
   // console.log(res.locals)
   res.render('index')
 })
-//pulling data from api
+//pulling data from quotable api
 app.get('/compose', (req, res) => {
   axios.get(`https://api.quotable.io/random?maxLength=80#`)
     .then(response => {
@@ -74,14 +75,37 @@ app.get("/compose", (req, res) => {
 });
 
 
-//redirect the user once the post has been created
-app.post("/compose", (req, res ) => {
+//redirect the user once the post has been created in db
+app.post("/compose", async (req, res) => {
   const allPost = req.body.postBody
-  
+  const compose = await db.compose.create({
+    body: req.body.postBody,
+    quote: req.body.quote
+    // author: req.body.postBody
+  })
 
-  res.render("home.ejs", {allPost});
+  res.render("home.ejs", { quote: compose.quote, allPost });
 
 });
+
+//show information about specific post
+app.get("/compose/:id", async (req, res) => {
+  try {
+
+    //get the array of quotes from the quotegarden.json
+    let quotes = await randomQuote()
+    //send them as a file
+    let quoteData = JSON.parse(quotes)
+    console.log(quoteData)
+    //identify the index of quote
+    let composeIndex = req.params.id
+    // console.log(composeIndex)
+    res.render("compose/compose.ejs", { quote: quoteData[composeIndex] });
+  } catch (err) {
+    console.log(err)
+  }
+})
+
 // controllers
 app.use('/users', require('./controllers/users'))
 

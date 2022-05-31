@@ -68,8 +68,8 @@ router.post('/login', async (req, res) => {
 			
 			console.log(compare)
 			// if they match -- send the user a cookie! to log them in
-			// const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
-			// res.cookie('userId', encryptedId)
+			const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
+			res.cookie('userId', encryptedId)
 			// redirect to profile
 			res.redirect('/home') 
 		} else {
