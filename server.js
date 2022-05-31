@@ -72,14 +72,14 @@ app.get('/compose', (req, res) => {
 app.get("/compose", (req, res) => {
   res.render("compose");
 });
+
+
 //redirect the user once the post has been created
 app.post("/compose", (req, res ) => {
-  const post = {
-    content: req.body.postBody
-  };
+  const allPost = req.body.postBody
+  
 
-
-  res.redirect("compose");
+  res.render("home.ejs", {allPost});
 
 });
 // controllers
