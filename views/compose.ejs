@@ -1,4 +1,7 @@
-<h1>Create Post</h1>
+<h1>Read Post</h1>
+      <p><%= quote.quote %></p>
+      <h4><%= quote.author %></h4>
+      <p><%= quote.body %></p>
 <form class="" action="/compose" method="post">
   <div class="">
     <input type="hidden" value='"<%= quote.content  %>" <%= quote.author  %>' name="quote">
@@ -14,3 +17,4 @@
   </div>
   <button class="" type="submit" name="button">Publish</button>
 </form>
+<button class="" name="button"><a href="/compose/<%= quote.id%>/edit">Edit</a></button>

@@ -71,7 +71,7 @@ router.post('/login', async (req, res) => {
 			const encryptedId = cryptoJS.AES.encrypt(foundUser.id.toString(), process.env.ENC_KEY).toString()
 			res.cookie('userId', encryptedId)
 			// redirect to profile
-			res.redirect('/home') 
+			res.redirect('/') 
 		} else {
 			// if not -- render the login form with a message
 			res.render('users/login.ejs', { msg })
@@ -89,7 +89,7 @@ router.get('/logout', (req, res) => {
 	// redirect to root
 	res.redirect('/')
 })
-
+//
 router.get('/profile', (req, res) => {
 	// check if user is authorized
 	if (!res.locals.user) {

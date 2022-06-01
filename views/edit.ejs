@@ -13,5 +13,8 @@
     </div>
   </div>
   <button class="" type="submit" name="button">Save</button>
+</form>
+<form action="/compose/<%=quote.id%>?_method=delete" method="post">
+   <input hidden name="quote" type="text" value="<%=quote.id%>">
   <button class="" type="submit" name="button">Delete</button>
 </form>
