@@ -1,0 +1,16 @@
+<h1>Edit Post</h1>
+<form class="" action="/compose" method="post">
+  <div class="">
+    <input type="hidden" value='"<%= quote.content  %>" <%= quote.author  %>' name="quote">
+    <p>
+      <%= quote.content %>
+        <%= quote.author %>
+          <%= quote.composeId %>
+    </p>
+    <label>Write your thoughts:</label>
+    <div>
+      <textarea class="" name="postBody" rows="8" cols="100"><%= quote.body %></textarea>
+    </div>
+  </div>
+  <button class="" type="submit" name="button">Save</button>
+</form>

@@ -70,10 +70,6 @@ app.get('/compose', (req, res) => {
     .catch(console.log())
 })
 
-app.get("/compose", (req, res) => {
-  res.render("compose");
-});
-
 
 //redirect the user once the post has been created in db
 app.post("/compose", async (req, res) => {
@@ -93,14 +89,15 @@ app.get("/compose/:id", async (req, res) => {
   try {
 
     //get the array of quotes from the quotegarden.json
-    let quotes = await randomQuote()
+    let quote = await db.compose.findByPk(req.params.id)
+    console.log(quote)
     //send them as a file
-    let quoteData = JSON.parse(quotes)
-    console.log(quoteData)
+    // let quoteData = JSON.parse(quotes)
+    // console.log(quoteData)
     //identify the index of quote
-    let composeIndex = req.params.id
+    // let composeIndex = req.params.id
     // console.log(composeIndex)
-    res.render("compose/compose.ejs", { quote: quoteData[composeIndex] });
+    res.render("edit.ejs", { quote });
   } catch (err) {
     console.log(err)
   }
