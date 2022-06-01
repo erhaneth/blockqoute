@@ -1,45 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Blockquote</title>
+  <!-- <script src="https://cdn.tailwindcss.com"></script>
+  <style type="text/tailwindcss"> -->
+    <!-- @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+  </style> -->
 </head>
+
 <body>
-  
-    <main>
+
+  <main>
+    <div class="flex justify-center">
+
       <h1>Blockquote</h1>
-      <%- body %> 
-    </main>
+    </div>
+    <%- body %>
+  </main>
+  <div class="flex justify-center">
   <nav>
     <ul>
       <% if (user) { %>
         <!-- if the user is logged in -->
         <li>
           <a href="/users/profile">Profile</a>
-        </li>
-        
-        <li>
-          <a href="/users/logout">Logout</a>
-        </li>
-      <% } else { %>
-        <!-- if the user is not logged in -->
-        <li>
-          <a href="/users/new">Sign up</a>
-        </li>
-  
-        <li>
-          <a href="/users/login">Login</a>
-        </li>
+    </li>
+
+    <li>
+      <a href="/users/logout">Logout</a>
+    </li>
+    <% } else { %>
+      <!-- if the user is not logged in -->
+      <li>
+        <a href="/users/new">Sign up</a>
+      </li>
+
+      <li>
+        <a href="/users/login">Login</a>
+      </li>
       <% } %>
-    </ul>
-  </nav>
-</div>
-<ul class="nav navbar-nav navbar-right">
-  <li id="home"><a href="/">HOME</a></li>
-  <li id="compose"><a href="/compose">CREATE POST</a></li>
-</ul>
-</div>
+        </ul>
+        </nav>
+  </div>
+  <div class="flex justify-start gap-5 m-2">
+ 
+    <a href="/"  id="home">HOME</a>
+    <a href="/compose" id="compose">CREATE POST</a>
+
+  </div>
+
 </body>
+
 </html>

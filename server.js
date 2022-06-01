@@ -6,7 +6,7 @@ const cookieParser = require('cookie-parser')
 const db = require('./models')
 const cryptoJS = require('crypto-js')
 const axios = require('axios')
-const { randomQuote } = require('quotegarden')
+// const { randomQuote } = require('quotegarden')
 
 //global variables
 // const post = ""
@@ -15,6 +15,9 @@ const { randomQuote } = require('quotegarden')
 const PORT = process.env.PORT || 3000
 const app = express()
 app.set('view engine', 'ejs')
+
+
+// let allPosts = []
 
 // middle wares
 const rowdyRes = rowdy.begin(app)
@@ -57,10 +60,12 @@ app.use(async (req, res, next) => {
 })
 
 // routes
-app.get('/', (req, res) => {
-  // console.log(res.locals)
-  res.render('index')
+app.get('/', async (req, res) => {
+  const allPost = await db.compose.findAll()
+ 
+  res.render('home', {allPosts: allPost})
 })
+
 //pulling data from quotable api
 app.get('/compose', (req, res) => {
   axios.get(`https://api.quotable.io/random?maxLength=80#`)
@@ -71,7 +76,7 @@ app.get('/compose', (req, res) => {
 })
 
 
-//redirect the user once the post has been created in db
+//redirect the user once the post has been create in db
 app.post("/compose", async (req, res) => {
   const allPost = req.body.postBody
   const compose = await db.compose.create({
@@ -79,24 +84,15 @@ app.post("/compose", async (req, res) => {
     quote: req.body.quote
     // author: req.body.postBody
   })
-
-  res.render("home.ejs", { quote: compose.quote, allPost });
+  res.render("home.ejs", { quote: compose.quote, allPosts: allPost });
 
 });
 
-//show information about specific post
+//show and edit information about specific post
 app.get("/compose/:id", async (req, res) => {
   try {
 
-    //get the array of quotes from the quotegarden.json
     let quote = await db.compose.findByPk(req.params.id)
-    console.log(quote)
-    //send them as a file
-    // let quoteData = JSON.parse(quotes)
-    // console.log(quoteData)
-    //identify the index of quote
-    // let composeIndex = req.params.id
-    // console.log(composeIndex)
     res.render("edit.ejs", { quote });
   } catch (err) {
     console.log(err)

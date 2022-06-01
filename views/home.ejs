@@ -1,4 +1,7 @@
 <h2>Home</h2>
-<p><%= quote %> </p>
-<p><%= allPost %> </p>
-
+<% allPosts.forEach( quote => { %>
+    <p>
+     <%= quote.body %>
+     <%= quote.author %>
+    </p>
+<% }); %>
