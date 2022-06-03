@@ -18,3 +18,10 @@
   <button class="" type="submit" name="button">Publish</button>
 </form>
 <button class="" name="button"><a href="/compose/<%= quote.id%>/edit">Edit</a></button>
+<div>
+  <form method="POST" action="/compose/<%= quote.id%>/comment">
+    <input hidden value="<%=quote.content%>" name="content" />
+    <input hidden value="<%= quote.author %>" name="author" />
+    <button type="submit">Save</button> 
+  </form>
+</div>

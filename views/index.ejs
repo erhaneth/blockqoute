@@ -1,8 +1,14 @@
 <h2>Index</h2>
 <% allPosts.forEach( quote=>{ %>
-    
-        <p><a href="/compose/<%= quote.id %>"><%= quote.quote %></a></p>
-        <h3><%= quote.author %></h3>
-        <p><%= quote.body %></p>
-    
-<% }); %>
+
+    <p>
+        <a href="/compose/<%= quote.id %>"><%= quote.quote %></a>
+    </p>
+    <h3>
+        <%= quote.author %>
+    </h3>
+    <p>
+        <%= quote.body %>
+    </p>
+
+    <% }); %>

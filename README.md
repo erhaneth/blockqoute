@@ -30,9 +30,9 @@ API:<h2><a href="https://api.quotable.io/random?maxLength=50#">Quotable</a></h2>
 | GET | /compose/:id | Show \(Read\) | list information about a specific compose |
 | GET | /compose/edit/:id | Edit \(Read\) | shows a form for editing a specific compose |
 | PUT | /compose/:id | Update \(Update\) | updates the data for a specific compose \(i.e. /compose/1\) |
-| PUT | /compose/:postId/comments/:commentId | Update \(Update\) | updates the data for a specific comment \(i.e. /compose/1/comments/2\) |
+| PUT | /compose/:composeId/comments/:commentId | Update \(Update\) | updates the data for a specific comment \(i.e. /compose/1/comments/2\) |
 | DELETE | /compose/:id | Destroy \(Delete\) | deletes the compose with the specified id \(i.e. /compose/1\) |
-| DELETE | /compose/:postId/comments/:commentId | Destroy \(Delete\) | deletes the comment with the specified id \(i.e. /compose/1/comments/2\) |
+| DELETE | /compose/:composeId/comments/:commentId | Destroy \(Delete\) | deletes the comment with the specified id \(i.e. /compose/1/comments/2\) |
 
 ## _MVP Goals_
 
@@ -43,14 +43,14 @@ API:<h2><a href="https://api.quotable.io/random?maxLength=50#">Quotable</a></h2>
 - As a user, I want to be able see all posts in the homepage
 - As a user, I want to be able to navigate through webpages
 - As a user, I want to be able to edit and delete the compose
+- As a user, I want to be able to see comments
+- As a user, I want to be able to make comments
 
 ## _Stretch Goals_
 
-- As a user, I want to be able to see comments
-- As a user, I want to be able to make comments
 - As a user, I want to be able to edit and delete comments
 
-<br>
+<b>
 
 ## _Technologies Used_
 

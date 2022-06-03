@@ -7,18 +7,12 @@ const db = require('./models')
 const cryptoJS = require('crypto-js')
 const axios = require('axios')
 const methodOverride = require("method-override")
-// const { randomQuote } = require('quotegarden')
-
-//global variables
-// const post = ""
 
 // app config
 const PORT = process.env.PORT || 3000
 const app = express()
 app.set('view engine', 'ejs')
 
-
-// let allPosts = []
 
 // middle wares
 const rowdyRes = rowdy.begin(app)
@@ -31,8 +25,8 @@ app.use(methodOverride("_method"))
 // happens on every request
 app.use((req, res, next) => {
   //  handy dandy debugging request logger
-  console.log(`[${new Date().toLocaleString()}] incoming request: ${req.method} ${req.url}`)
-  console.log('request body:', req.body)
+  // console.log(`[${new Date().toLocaleString()}] incoming request: ${req.method} ${req.url}`)
+  // console.log('request body:', req.body)
   // modify the response to give data to the routes/middleware that is 'downstream'
   res.locals.myData = 'hi, I came from a middleware!'
   // tell express that the middleware is done
@@ -64,8 +58,8 @@ app.use(async (req, res, next) => {
 // routes
 app.get('/', async (req, res) => {
   const allPost = await db.compose.findAll()
- 
-  res.render('index', {allPosts: allPost})
+
+  res.render('index', { allPosts: allPost })
 })
 
 //pulling data from quotable api
@@ -77,21 +71,43 @@ app.get('/compose', (req, res) => {
     .catch(console.log())
 })
 
+//separate button that save a compose, button will have action of post/compose
+
+//new route add comments to compose post/compose/:id/comment
+//redirect shows compose and new comment
+//url /compose/:id
+app.post("/compose/:id/comment", async (req, res) => {
+  try {
+    let composeQuote = await db.compose.findByFk(req.params.id)
+    //create comment for the compuseQuote
+    const comment= {
+      where: {
+        compose: ''
+      },
+      defaults:{
+        comment: ''
+      }
+    }
+    res.redirect(`/compose/${req.params.id}`);
+  } catch (err) {
+    console.log(err)
+  }
+});
 
 //redirect the user once the post has been create in db
 app.post("/compose", async (req, res) => {
   const allPost = req.body.postBody
   const compose = await db.compose.create({
-    body: req.body.postBody,
-    quote: req.body.quote
-    // userId: res.locals.user.id
+    quote: req.body.content,
+    author: req.body.author
 
   })
-  // res.render("home.ejs", { quote: compose.quote, allPosts: allPost });
   res.redirect("/")
+
 });
 
-//show and edit information about specific post
+//show  information about specific post
+//redirect shows compose and new comment
 app.get("/compose/:id", async (req, res) => {
   try {
     let quote = await db.compose.findByPk(req.params.id)
@@ -100,21 +116,37 @@ app.get("/compose/:id", async (req, res) => {
     console.log(err)
   }
 })
-//
+//shows the edit form to user
 app.get("/compose/:id/edit", async (req, res) => {
   try {
     let quote = await db.compose.findByPk(req.params.id)
+    // console.log("in edit >>>", quote)
     res.render("edit.ejs", { quote });
+
   } catch (err) {
     console.log(err)
   }
 })
+//update data for specific id of compose
+app.put('/compose/:id', async (req, res) => {
+  try {
+    let composeBody = await db.compose.findByPk(req.params.id)
+    composeBody.body = req.body.postBody
+    composeBody.quote = req.body.quote
+    composeBody.author = req.body.author
+    composeBody.save()
+
+    res.redirect('/');
+  } catch (err) {
+    console.log(err)
+  }
+});
 //get comments about a specific quote/compose
 app.get("/postpage", async (req, res) => {
-  
+
   try {
-    let composeQuote = await db.compose.findByFk(req.params.id)
-    res.render("postpage.ejs", {composeQuote });
+    let composeQuote = await db.compose.findByPk(req.params.id)
+    res.render("postpage.ejs", { composeQuote });
   } catch (err) {
     console.log(err)
   }
@@ -122,23 +154,23 @@ app.get("/postpage", async (req, res) => {
 
 //get postpage/:id 
 app.get("/postpage/:id", async (req, res) => {
-  console.log("postpageID", req.params.id)
+  // console.log("postpageID", req.params.id)
   try {
     let composeQuote = await db.compose.findByFk(req.params.id)
-    res.render("postpage.ejs", {composeQuote });
+    res.render("postpage.ejs", { composeQuote });
   } catch (err) {
     console.log(err)
   }
 })
 
 //delete specific posts from db
-app.delete("/compose/:id", async(req,res) =>{
-  try{
+app.delete("/compose/:id", async (req, res) => {
+  try {
     let quote = await db.compose.findByPk(req.params.id)
     await quote.destroy()
     res.redirect("/");
-    
-  }catch(err){
+
+  } catch (err) {
     console.log(err)
   }
 })

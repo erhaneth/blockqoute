@@ -1,10 +1,7 @@
 1. create a multi-line text area in the page of "posts"
  -fix the error ?
-2. create navbar that has all links to pages.
+2. create comments text area for users comments ont posts/compose
 
-- this navbar will be showing both home.ejs and post.ejs
+3. list all user comments under specific post
 
-- create partial folder that include header and footer.ejs
-
-
-3. 
+4. 
