@@ -4,4 +4,6 @@
 
 3. list all user comments under specific post
 
-4. 
+4. set up your controllers
+
+5. set up login page

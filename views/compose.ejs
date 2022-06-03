@@ -4,7 +4,7 @@
       <p><%= quote.body %></p>
 <form class="" action="/compose" method="post">
   <div class="">
-    <input type="hidden" value='"<%= quote.content  %>" <%= quote.author  %>' name="quote">
+    <input type="hidden" value="<%= quote.content  %><%= quote.author  %>" name="quote">
     <p>
       <%= quote.content %>
         <%= quote.author %>
@@ -22,6 +22,12 @@
   <form method="POST" action="/compose/<%= quote.id%>/comment">
     <input hidden value="<%=quote.content%>" name="content" />
     <input hidden value="<%= quote.author %>" name="author" />
-    <button type="submit">Save</button> 
+    <button type="submit">Save Comment</button> 
   </form>
 </div>
+
+<% if(quote.comments){ %> 
+     <%  quote.comments.forEach(comment => { %> 
+          <p><%= comment %> </p>
+     <% }) %> 
+     <% } %> 

@@ -71,37 +71,40 @@ app.get('/compose', (req, res) => {
     .catch(console.log())
 })
 
-//separate button that save a compose, button will have action of post/compose
+
 
 //new route add comments to compose post/compose/:id/comment
-//redirect shows compose and new comment
 //url /compose/:id
 app.post("/compose/:id/comment", async (req, res) => {
   try {
-    let composeQuote = await db.compose.findByFk(req.params.id)
-    //create comment for the compuseQuote
-    const comment= {
-      where: {
-        compose: ''
-      },
-      defaults:{
-        comment: ''
+    let composeQuote = await db.compose.findByPk(req.params.id)
+    
+    //create comment for the compuseQuote in db
+    const newComment = await db.comment.create({
+      default: {
+        body: req.params.id,
+        userId: req.params.userId,
+        composeId: req.params.composeId
       }
-    }
+    })
+    console.log(req.params.userId)
+    console.log(newComment)
+    
+    //redirect shows compose and new comment
     res.redirect(`/compose/${req.params.id}`);
   } catch (err) {
     console.log(err)
   }
 });
-
-//redirect the user once the post has been create in db
+//creates an compose with the form data
 app.post("/compose", async (req, res) => {
   const allPost = req.body.postBody
   const compose = await db.compose.create({
     quote: req.body.content,
     author: req.body.author
-
+    
   })
+  //redirect the user once the post has been create in db
   res.redirect("/")
 
 });
@@ -110,7 +113,13 @@ app.post("/compose", async (req, res) => {
 //redirect shows compose and new comment
 app.get("/compose/:id", async (req, res) => {
   try {
-    let quote = await db.compose.findByPk(req.params.id)
+    let quote = await db.compose.findOne({
+      where: {
+        id: req.params.id,
+       
+      }, include: [db.comment]
+    })
+    // res.send({quote})
     res.render("compose.ejs", { quote });
   } catch (err) {
     console.log(err)
@@ -141,27 +150,27 @@ app.put('/compose/:id', async (req, res) => {
     console.log(err)
   }
 });
-//get comments about a specific quote/compose
-app.get("/postpage", async (req, res) => {
+// //get comments about a specific quote/compose
+// app.get("/postpage", async (req, res) => {
 
-  try {
-    let composeQuote = await db.compose.findByPk(req.params.id)
-    res.render("postpage.ejs", { composeQuote });
-  } catch (err) {
-    console.log(err)
-  }
-})
+//   try {
+//     let composeQuote = await db.compose.findByPk(req.params.id)
+//     res.render("postpage.ejs", { composeQuote });
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
 
-//get postpage/:id 
-app.get("/postpage/:id", async (req, res) => {
-  // console.log("postpageID", req.params.id)
-  try {
-    let composeQuote = await db.compose.findByFk(req.params.id)
-    res.render("postpage.ejs", { composeQuote });
-  } catch (err) {
-    console.log(err)
-  }
-})
+// //get postpage/:id 
+// app.get("/postpage/:id", async (req, res) => {
+//   // console.log("postpageID", req.params.id)
+//   try {
+//     let composeQuote = await db.compose.findByFk(req.params.id)
+//     res.render("postpage.ejs", { composeQuote });
+//   } catch (err) {
+//     console.log(err)
+//   }
+// })
 
 //delete specific posts from db
 app.delete("/compose/:id", async (req, res) => {
