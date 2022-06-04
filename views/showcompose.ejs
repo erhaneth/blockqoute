@@ -1,0 +1,23 @@
+<h3>show page</h3>
+<p><%= compose.quote %> -- <%= compose.author %></p>
+<h4>Post Body</h4>
+<p><%= compose.body %> </p>
+
+<button class="" name="button"><a href="/compose/<%= compose.id%>/edit">Edit</a></button>
+<div>
+  <form method="POST" action="/compose/<%= compose.id%>/comment">
+    <input hidden value="<%=compose.content%>" name="content" />
+    <input hidden value="<%= compose.author %>" name="author" />
+    <label for="commentbody">Comment:</label>
+    <div>
+      <textarea id="commentbody" class="" name="body" rows="4" cols="50"></textarea>
+    </div>
+    <button type="submit">Save Comment</button> 
+  </form>
+</div>
+
+<% if(compose.comments){ %> 
+     <%  compose.comments.forEach(comment => { %> 
+          <p><%= comment.body %> </p>
+     <% }) %> 
+     <% } %> 

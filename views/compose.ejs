@@ -1,33 +1,15 @@
-<h1>Read Post</h1>
-      <p><%= quote.quote %></p>
-      <h4><%= quote.author %></h4>
-      <p><%= quote.body %></p>
+<h1>Create Post</h1>
+<p>
+  <%= quote.content %> -- <%= quote.author %> 
+</p>
 <form class="" action="/compose" method="post">
   <div class="">
-    <input type="hidden" value="<%= quote.content  %><%= quote.author  %>" name="quote">
-    <p>
-      <%= quote.content %>
-        <%= quote.author %>
-          <%= quote.composeId %>
-    </p>
-    <label>Write your thoughts:</label>
+    <input type="hidden" value="<%= quote.content %>" name="quote">
+    <input type="hidden" value="<%= quote.author %>" name="author">
+    <label>Write your post:</label>
     <div>
       <textarea class="" name="postBody" rows="8" cols="100"></textarea>
     </div>
   </div>
   <button class="" type="submit" name="button">Publish</button>
 </form>
-<button class="" name="button"><a href="/compose/<%= quote.id%>/edit">Edit</a></button>
-<div>
-  <form method="POST" action="/compose/<%= quote.id%>/comment">
-    <input hidden value="<%=quote.content%>" name="content" />
-    <input hidden value="<%= quote.author %>" name="author" />
-    <button type="submit">Save Comment</button> 
-  </form>
-</div>
-
-<% if(quote.comments){ %> 
-     <%  quote.comments.forEach(comment => { %> 
-          <p><%= comment %> </p>
-     <% }) %> 
-     <% } %> 
