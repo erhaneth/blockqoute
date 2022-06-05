@@ -53,7 +53,7 @@ router.post("/:id/comment", async (req, res) => {
         })
         //redirect shows compose and new comment
         //   const compose = await db.compose.findByPk(req.params.id)
-        res.redirect('/')
+        res.redirect(`/compose/${req.params.id}`)
     } catch (err) {
         console.log(err)
     }
@@ -63,7 +63,7 @@ router.post("/:id/comment", async (req, res) => {
 router.get("/:id/edit", async (req, res) => {
     try {
         let quote = await db.compose.findByPk(req.params.id)
-        if(quote.userId!==res.locals.userId){
+        if (quote.userId !== res.locals.userId) {
             res.render('notauthorized.ejs')
             return
         }
@@ -77,7 +77,7 @@ router.get("/:id/edit", async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         let composeBody = await db.compose.findByPk(req.params.id)
-        if(quote.userId!==res.locals.userId){
+        if (quote.userId !== res.locals.userId) {
             res.render('notauthorized.ejs')
             return
         }
@@ -96,7 +96,7 @@ router.put('/:id', async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         let quote = await db.compose.findByPk(req.params.id)
-        if(quote.userId!==res.locals.userId){
+        if (quote.userId !== res.locals.userId) {
             res.render('notauthorized.ejs')
             return
         }

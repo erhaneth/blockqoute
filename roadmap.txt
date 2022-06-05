@@ -1,9 +1,11 @@
-1. create a multi-line text area in the page of "posts"
- -fix the error ?
-2. create comments text area for users comments ont posts/compose
 
-3. list all user comments under specific post
+1. list all user comments under specific post and fix comment bugs
 
-4. set up your controllers
+2. set up your controllers
 
-5. set up login page
+3. set up login page
+
+4. styling
+
+
+
