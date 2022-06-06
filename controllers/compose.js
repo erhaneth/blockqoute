@@ -24,7 +24,7 @@ router.get('/:id', async (req, res) => {
 })
 
 
-//creates an compose with the form data - when user click publish button
+//creates an compose/post with the form data - when user click publish button
 router.post("/", async (req, res) => {
     //create compose object with columns
     const compose = await db.compose.create({
@@ -38,7 +38,7 @@ router.post("/", async (req, res) => {
 
 });
 
-//create route that add comments to compose post/compose/:id/comment
+//create route that add comments to compose/post 
 //url ---> /compose/:id/comment
 router.post("/:id/comment", async (req, res) => {
     try {
@@ -52,7 +52,6 @@ router.post("/:id/comment", async (req, res) => {
 
         })
         //redirect shows compose and new comment
-        //   const compose = await db.compose.findByPk(req.params.id)
         res.redirect(`/compose/${req.params.id}`)
     } catch (err) {
         console.log(err)

@@ -9,7 +9,7 @@ const testBcrypt = () => {
 	const hash = bcrypt.hashSync(password, salt)
 	console.log(hash)
 
-	// when a user logs in we can use compare sync to match passwrods to our db's hashes
+	// when a user logs in we can use compare sync to match passwords to our db's hashes
 	const compare = bcrypt.compareSync('wrong pass', hash)
 	console.log('do they match?', compare)
 }
@@ -18,7 +18,7 @@ const testBcrypt = () => {
 
 const testCrypto = () => {
 	// this passphrase will be known only to the server admins
-	const passphrase = 'gfssnudhfsn34'
+	const passphrase = '1234_hello'
 
 	// this message will be in the cookie as the user's id
 	const message = 'hello'

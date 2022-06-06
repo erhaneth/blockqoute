@@ -3,8 +3,8 @@
 <h4>Post Body</h4>
 <p><%= compose.body %></p>
 
-<button class="" name="button"><a href="/compose/<%= compose.id%>/edit">Edit Post</a></button>
 <br>
+<button class="" name="button"><a href="/compose/<%= compose.id%>/edit">Edit Post</a></button>
 <div>
   <form method="POST" action="/compose/<%= compose.id%>/comment">
     <input hidden value="<%=compose.content%>" name="content" />
