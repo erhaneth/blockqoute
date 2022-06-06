@@ -17,15 +17,15 @@ const testBcrypt = () => {
 // testBcrypt()
 
 const testCrypto = () => {
-	// this pasphrase will be known only to the server admins
-	const passphrase = '1234_hello'
+	// this passphrase will be known only to the server admins
+	const passphrase = 'gfssnudhfsn34'
 
 	// this message will be in the cookie as the user's id
 	const message = 'hello'
 
 	const encrypted = cryptoJS.AES.encrypt(message, passphrase).toString()
 	console.log(encrypted)
-	// in the middle we wiklll decrypt
+	// in the middle we will decrypt
 	const decrypted = cryptoJS.AES.decrypt(encrypted, passphrase).toString(cryptoJS.enc.Utf8)
 	console.log(decrypted)
 }

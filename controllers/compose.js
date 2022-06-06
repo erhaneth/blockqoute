@@ -77,7 +77,7 @@ router.get("/:id/edit", async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         let composeBody = await db.compose.findByPk(req.params.id)
-        if (quote.userId !== res.locals.userId) {
+        if (composeBody.userId !== res.locals.userId) {
             res.render('notauthorized.ejs')
             return
         }

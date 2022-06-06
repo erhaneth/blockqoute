@@ -1,9 +1,10 @@
-<h3>show page</h3>
+<h3>Show Page</h3>
 <p><%= compose.quote %> -- <%= compose.author %></p>
 <h4>Post Body</h4>
-<p><%= compose.body %> </p>
+<p><%= compose.body %></p>
 
-<button class="" name="button"><a href="/compose/<%= compose.id%>/edit">Edit</a></button>
+<button class="" name="button"><a href="/compose/<%= compose.id%>/edit">Edit Post</a></button>
+<br>
 <div>
   <form method="POST" action="/compose/<%= compose.id%>/comment">
     <input hidden value="<%=compose.content%>" name="content" />
