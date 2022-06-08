@@ -8,7 +8,7 @@ const cryptoJS = require('crypto-js')
 const methodOverride = require("method-override")
 
 // app config
-const PORT = process.env.PORT || 3000
+const PORT = process.env.PORT || 3333
 const app = express()
 app.set('view engine', 'ejs')
 

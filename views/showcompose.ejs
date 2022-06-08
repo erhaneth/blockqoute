@@ -1,7 +1,11 @@
 <h3>Show Page</h3>
-<p><%= compose.quote %> -- <%= compose.author %></p>
+<p>
+  <%= compose.quote %> -- <%= compose.author %>
+</p>
 <h4>Post Body</h4>
-<p><%= compose.body %></p>
+<p>
+  <%= compose.body %>
+</p>
 
 <br>
 <button class="" name="button"><a href="/compose/<%= compose.id%>/edit">Edit Post</a></button>
@@ -13,12 +17,14 @@
     <div>
       <textarea id="commentbody" class="" name="body" rows="4" cols="50"></textarea>
     </div>
-    <button type="submit">Save Comment</button> 
+    <button type="submit">Save Comment</button>
   </form>
 </div>
 
-<% if(compose.comments){ %> 
-     <%  compose.comments.forEach(comment => { %> 
-          <p><%= comment.body %> </p>
-     <% }) %> 
-     <% } %> 
+<% if(compose.comments){ %>
+  <% compose.comments.forEach(comment=> { %>
+    <p>
+      <%= comment.body %>
+    </p>
+    <% }) %>
+      <% } %>

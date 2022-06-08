@@ -30,7 +30,8 @@ router.post("/", async (req, res) => {
     const compose = await db.compose.create({
         quote: req.body.quote,
         author: req.body.author,
-        body: req.body.postBody
+        body: req.body.postBody,
+        userId: res.locals.user.dataValues.id
 
     })
     //redirect the user once the post has been create in db
@@ -49,8 +50,10 @@ router.post("/:id/comment", async (req, res) => {
             body: req.body.body,
             userId: res.locals.user.id,
             composeId: req.params.id
+            
 
         })
+        console.log(newComment)
         //redirect shows compose and new comment
         res.redirect(`/compose/${req.params.id}`)
     } catch (err) {
@@ -58,15 +61,15 @@ router.post("/:id/comment", async (req, res) => {
     }
 });
 
-//shows the edit form to user
+//shows the edit form to the user
 router.get("/:id/edit", async (req, res) => {
     try {
         let quote = await db.compose.findByPk(req.params.id)
-        if (quote.userId !== res.locals.userId) {
+        if (quote.userId !== res.locals.user.dataValues.id) {
             res.render('notauthorized.ejs')
             return
         }
-        res.render("edit.ejs", { quote });
+        res.render("edit", { quote });
 
     } catch (err) {
         console.log(err)
@@ -76,7 +79,8 @@ router.get("/:id/edit", async (req, res) => {
 router.put('/:id', async (req, res) => {
     try {
         let composeBody = await db.compose.findByPk(req.params.id)
-        if (composeBody.userId !== res.locals.userId) {
+        console.log(composeBody)
+        if (composeBody.userId !== res.locals.user.dataValues.id) {
             res.render('notauthorized.ejs')
             return
         }
@@ -95,7 +99,7 @@ router.put('/:id', async (req, res) => {
 router.delete("/:id", async (req, res) => {
     try {
         let quote = await db.compose.findByPk(req.params.id)
-        if (quote.userId !== res.locals.userId) {
+        if (quote.userId !== res.locals.user.dataValues.id) {
             res.render('notauthorized.ejs')
             return
         }
