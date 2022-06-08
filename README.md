@@ -55,7 +55,7 @@ API:<p><a href="https://api.quotable.io/random?maxLength=50#">Quotable</a></p>
 - As a user, I want to be able to edit and delete comments
 
 
-<b>
+<b/>
 
 ## _Technologies Used_
 
