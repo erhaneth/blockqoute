@@ -1,15 +1,24 @@
-<% allpost.forEach( quote=>{ %>
+<div class="bg-gray-100 min-h-screen p-8">
+    <div class="flex flex-wrap">
 
-    <p>
-        <a href="/post/<%= quote.id %>">
-            <%= quote.quote %>
-        </a>
-    </p>
-    <h3>
-        <%= quote.author %>
-    </h3>
-    <p>
-        <%= quote.body %>
-    </p>
+        <% allpost.forEach( quote=>{ %>
+            <div class="w-full  p-4">
+                <div class="bg-white rounded-lg shadow-md p-6">
 
-    <% }); %>
+                    <p class="text-xl font-medium text-gray-700 mb-2">
+                        <a href="/post/<%= quote.id %>" class="text-indigo-600 hover:text-indigo-800">
+                            "<%= quote.quote %>"
+                        </a>
+                    </p>
+                    <h3 class="text-lg font-medium text-gray-900 mb-4 flex justify-end">
+                        - <%= quote.author %>
+                    </h3>
+                    <p class="text-base text-gray-600 mb-4">
+                        <%= quote.body %>
+                    </p>
+                </div>
+
+            </div>
+            <% }); %>
+    </div>
+</div>
