@@ -1,15 +1,33 @@
-<% if (msg) { %>
-	<div>
-		<p><%= msg %></p>
+<div class="bg-gray-200 min-h-screen flex items-center justify-center">
+	<div class="w-full max-w-xs">
+		<form class="bg-white p-6 rounded-lg shadow-md" action="/users" method="POST">
+			<% if (msg) { %>
+				<div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded-lg mb-4" role="alert">
+					<p class="font-medium text-sm">
+						<%= msg %>
+					</p>
+				</div>
+				<% } %>
+					<div class="mb-4">
+						<label class="block text-gray-700 font-medium mb-2" for="email">
+							Email:
+						</label>
+						<input class="bg-gray-200 p-2 rounded-lg w-full" id="email" type="email" name="email"
+							placeholder="enter your email..." required />
+					</div>
+					<div class="mb-6">
+						<label class="block text-gray-700 font-medium mb-2" for="password">
+							Password:
+						</label>
+						<input class="bg-gray-200 p-2 rounded-lg w-full" id="password" type="password" name="password"
+							placeholder="enter your password 📀" required />
+					</div>
+					<div class="flex items-center justify-between">
+						<button class="bg-indigo-500 hover:bg-indigo-600 text-white font-medium py-2 px-4 rounded-lg"
+							type="submit">
+							Sign up
+						</button>
+					</div>
+		</form>
 	</div>
-<% } %> 
-
-<form action="/users" method="POST">
-	<label for="email">Email:</label>
-	<input id="email" type="email" name="email" placeholder="enter your email..." required />
-
-	<label for="password">Password:</label>
-	<input id="password" type="password" name="password" placeholder="enter your password 📀" required />
-
-	<button type="submit">Sign up!</button>
-</form>
+</div>
