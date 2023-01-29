@@ -2,7 +2,7 @@
 <p class="text-slate-900 text-center font-medium">
   <%= quote.content %> -- <%= quote.author %>
 </p>
-<form class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-center" action="/compose" method="post">
+<form class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-center" action="/post" method="post">
   <div class="text-slate-900 font-bold">
     <input type="hidden" value="<%= quote.content %>" name="quote">
     <input type="hidden" value="<%= quote.author %>" name="author">

@@ -1,8 +1,9 @@
-
-<% allPosts.forEach( quote=>{ %>
+<% allpost.forEach( quote=>{ %>
 
     <p>
-        <a href="/compose/<%= quote.id %>"><%= quote.quote %></a>
+        <a href="/post/<%= quote.id %>">
+            <%= quote.quote %>
+        </a>
     </p>
     <h3>
         <%= quote.author %>

@@ -8,49 +8,49 @@ router.get("/new", (req, res) => {
   axios
     .get(`https://api.quotable.io/random?maxLength=80#`)
     .then((response) => {
-      res.render("compose.ejs", { quote: response.data });
+      res.render("post.ejs", { quote: response.data });
     })
     .catch(console.log());
 });
-//showing single compose/post to the showcompose.ejs page
+//showing single post/post to the showpost.ejs page
 router.get("/:id", async (req, res) => {
   try {
     //find specific post from db -- with join sql request
-    const compose = await db.compose.findByPk(req.params.id, {
+    const post = await db.post.findByPk(req.params.id, {
       include: [db.comment],
     });
-    res.render("showcompose.ejs", { compose });
+    res.render("showpost.ejs", { post });
   } catch (err) {
     console.log(err);
   }
 });
 
-//creates an compose/post with the form data - when user click publish button
+//creates an post/post with the form data - when user click publish button
 router.post("/", async (req, res) => {
-  //create compose object with columns
-  const compose = await db.compose.create({
+  //create post object with columns
+  const post = await db.post.create({
     quote: req.body.quote,
     author: req.body.author,
     body: req.body.postBody,
     userId: res.locals.user.dataValues.id,
   });
   //redirect the user once the post has been create in db
-  res.redirect(`compose/${compose.id}`);
+  res.redirect(`post/${post.id}`);
 });
 
-//create route that add comments to compose/post
-//url ---> /compose/:id/comment
+//create route that add comments to post/post
+//url ---> /post/:id/comment
 router.post("/:id/comment", async (req, res) => {
   try {
     //create comment for the compuseQuote in db
     const newComment = await db.comment.create({
       body: req.body.body,
       userId: res.locals.user.id,
-      composeId: req.params.id,
+      postId: req.params.id,
     });
     console.log(newComment);
-    //redirect shows compose and new comment
-    res.redirect(`/compose/${req.params.id}`);
+    //redirect shows post and new comment
+    res.redirect(`/post/${req.params.id}`);
   } catch (err) {
     console.log(err);
   }
@@ -59,7 +59,7 @@ router.post("/:id/comment", async (req, res) => {
 //shows the edit form to the user
 router.get("/:id/edit", async (req, res) => {
   try {
-    let quote = await db.compose.findByPk(req.params.id);
+    let quote = await db.post.findByPk(req.params.id);
     if (quote.userId !== res.locals.user.dataValues.id) {
       res.render("notauthorized.ejs");
       return;
@@ -69,19 +69,19 @@ router.get("/:id/edit", async (req, res) => {
     console.log(err);
   }
 });
-//update data for specific id of compose
+//update data for specific id of post
 router.put("/:id", async (req, res) => {
   try {
-    let composeBody = await db.compose.findByPk(req.params.id);
-    console.log(composeBody);
-    if (composeBody.userId !== res.locals.user.dataValues.id) {
+    let postBody = await db.post.findByPk(req.params.id);
+    console.log(postBody);
+    if (postBody.userId !== res.locals.user.dataValues.id) {
       res.render("notauthorized.ejs");
       return;
     }
-    composeBody.body = req.body.postBody;
-    composeBody.quote = req.body.quote;
-    composeBody.author = req.body.author;
-    composeBody.save();
+    postBody.body = req.body.postBody;
+    postBody.quote = req.body.quote;
+    postBody.author = req.body.author;
+    postBody.save();
 
     res.redirect("/");
   } catch (err) {
@@ -89,10 +89,10 @@ router.put("/:id", async (req, res) => {
   }
 });
 
-//delete specific posts from db
+//delete specific post from db
 router.delete("/:id", async (req, res) => {
   try {
-    let quote = await db.compose.findByPk(req.params.id);
+    let quote = await db.post.findByPk(req.params.id);
     if (quote.userId !== res.locals.user.dataValues.id) {
       res.render("notauthorized.ejs");
       return;

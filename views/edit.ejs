@@ -1,12 +1,12 @@
 <h1>Edit Post</h1>
-<form class="" action="/compose/<%=quote.id%>?_method=put" method="post">
+<form class="" action="/post/<%=quote.id%>?_method=put" method="post">
   <div class="">
     <input type="hidden" value="<%=quote.quote%>" name="quote">
     <input type="hidden" value="<%=quote.author%>" name="author">
     <p>
       <%= quote.quote %>
-      <%= quote.author %>
-      <%= quote.composeId %>
+        <%= quote.author %>
+          <%= quote.postId %>
     </p>
     <label>Write your post:</label>
     <div>
@@ -15,7 +15,7 @@
   </div>
   <button class="" type="submit" name="button">Save</button>
 </form>
-<form action="/compose/<%=quote.id%>?_method=delete" method="post">
+<form action="/post/<%=quote.id%>?_method=delete" method="post">
   <input hidden name="quote" type="text" value="<%=quote.id%>">
   <button class="" type="submit" name="button">Delete</button>
 </form>
