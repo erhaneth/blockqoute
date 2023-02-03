@@ -74,10 +74,10 @@ API:<p><a href="https://api.quotable.io/random?maxLength=50#">Quotable</a></p>
 
 ## _Installation Instructions_
 
-If you like to install this app, follow these instructions:
+Follow these simple steps to install and run Blockquote:
 
-- Fork-Clone Blockquote repository
-- Install all necessary dependencies
-- Create env file to store randomized ENCRYPTION_KEY
-- Nodemon to run the application
-- This application using Quotable API and does not need an API key
+Fork and clone the Blockquote repository
+Install required dependencies for the application
+Create an environment file to store the randomized ENCRYPTION_KEY
+Start the application using Nodemon
+Integration with Quotable API - no API key required!
