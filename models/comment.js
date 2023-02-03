@@ -17,7 +17,6 @@ module.exports = (sequelize, DataTypes) => {
     {
       body: DataTypes.TEXT,
       userId: DataTypes.INTEGER,
-      postId: DataTypes.INTEGER,
     },
     {
       sequelize,

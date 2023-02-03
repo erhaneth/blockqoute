@@ -40,7 +40,7 @@ router.post("/", async (req, res) => {
 
 //create route that add comments to post/post
 //url ---> /post/:id/comment
-router.post("/:id/comment", async (req, res) => {
+router.post("/:id/comments", async (req, res) => {
   try {
     //create comment for the compuseQuote in db
     const newComment = await db.comment.create({
