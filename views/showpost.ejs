@@ -1,29 +1,31 @@
-<h3>Show Page</h3>
-<p>
+<h3 class="text-3xl text-center font-semibold text-blue-500">Show Page</h3>
+<p class="text-slate-900 text-center font-medium">
   <%= post.quote %> -- <%= post.author %>
 </p>
-<h4>Post Body</h4>
-<p>
+<h4 class="text-2xl text-center font-bold text-blue-500">Post Body</h4>
+<p class="text-slate-900 text-center font-medium">
   <%= post.body %>
 </p>
 
 <br>
-<button class="" name="button"><a href="/post/<%= post.id%>/edit">Edit Post</a></button>
-<div>
+<button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600" name="button">
+  <a href="/post/<%= post.id%>/edit" class="text-white">Edit Post</a>
+</button>
+<div class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-center">
   <form method="POST" action="/post/<%= post.id%>/comment">
     <input hidden value="<%=post.content%>" name="content" />
     <input hidden value="<%= post.author %>" name="author" />
-    <label for="commentbody">Comment:</label>
+    <label class="block font-medium text-slate-900 mb-2" for="commentbody">Comment:</label>
     <div>
-      <textarea id="commentbody" class="" name="body" rows="4" cols="50"></textarea>
+      <textarea id="commentbody" class="bg-gray-200 p-2 rounded-lg w-full" name="body" rows="4" cols="50"></textarea>
     </div>
-    <button type="submit">Save Comment</button>
+    <button class="bg-blue-500 text-white py-2 px-4 rounded-lg hover:bg-blue-600" type="submit">Save Comment</button>
   </form>
 </div>
 
 <% if(post.comments){ %>
   <% post.comments.forEach(comment=> { %>
-    <p>
+    <p class="text-slate-900 text-center font-medium">
       <%= comment.body %>
     </p>
     <% }) %>
