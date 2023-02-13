@@ -1,21 +1,25 @@
-<h1>Edit Post</h1>
-<form class="" action="/post/<%=quote.id%>?_method=put" method="post">
-  <div class="">
+<h1 class="text-3xl text-center font-semibold text-blue-500">Edit Post</h1>
+<form class="bg-white p-4 rounded-lg shadow-md flex flex-col justify-center" action="/post/<%=quote.id%>?_method=put"
+  method="post">
+  <div class="text-slate-900 font-bold">
     <input type="hidden" value="<%=quote.quote%>" name="quote">
     <input type="hidden" value="<%=quote.author%>" name="author">
-    <p>
-      <%= quote.quote %>
-        <%= quote.author %>
-          <%= quote.postId %>
+    <p class="text-slate-900 text-center font-medium">
+      <%= quote.quote %> -- <%= quote.author %>
     </p>
-    <label>Write your post:</label>
+    <label class="block font-medium text-slate-900 mb-2">Edit:</label>
     <div>
-      <textarea class="" name="postBody" rows="8" cols="100"><%= quote.body %></textarea>
+      <textarea class="bg-gray-200 p-2 rounded-lg w-full" name="postBody" rows="4"
+        cols="50"><%= quote.body %></textarea>
     </div>
   </div>
-  <button class="" type="submit" name="button">Save</button>
-</form>
-<form action="/post/<%=quote.id%>?_method=delete" method="post">
-  <input hidden name="quote" type="text" value="<%=quote.id%>">
-  <button class="" type="submit" name="button">Delete</button>
+  <div class="content-center...">
+    <button class="bg-green-500 text-white py-2 px-4 rounded-lg hover:bg-green-600 mt-8" type="submit"
+      name="button">Save</button>
+    <form class="mt-8" action="/post/<%=quote.id%>?_method=delete" method="post">
+      <input hidden name="quote" type="text" value="<%=quote.id%>">
+      <button class="bg-red-500 text-white py-2 px-4 rounded-lg hover:bg-red-600" type="submit"
+        name="button">Delete</button>
+    </form>
+  </div>
 </form>

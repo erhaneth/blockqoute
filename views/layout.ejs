@@ -13,17 +13,17 @@
   <div class="container mx-auto">
     <header class="py-4 flex justify-between items-center">
       <a href="/" id="home" class="text-blue-500">Home</a>
-      <a href="/post/new" id="post" class="text-blue-500">Create Post</a>
-      <main class="flex justify-center py-8 text-blue-500">
-        <h1 class="text-3xl font-semibold">Blockquote</h1>
+      <a href="/post/new" id="post" class="text-blue-500">Generate Quote</a>
+      <main class="flex justify-center py-8">
+        <button class="text-3xl font-semibold text-blue-500" onclick="location.href='/';">Blockquote</button>
       </main>
       <nav class="flex">
         <% if (user) { %>
           <!-- if the user is logged in -->
           <a href="/users/logout" class="text-blue-500 px-2">Logout</a>
-          <li class="px-2">
-            <a href="/users/profile" class="text-blue-500">Profile</a>
-          </li>
+
+          <a href="/users/profile" class="text-blue-500 px-2">Profile</a>
+
           <% } else { %>
             <!-- if the user is not logged in -->
             <a href="/users/new" class="text-blue-500 px-2">Sign up</a>
@@ -31,6 +31,15 @@
             <% } %>
       </nav>
     </header>
+
+    <!-- <style>
+      @import url('https://fonts.googleapis.com/css2?family=Special+Elite&display=swap');
+
+      header main h1 {
+        font-family: 'Serif', cursive;
+      }
+    </style> -->
+
 
     <section class="mx-auto">
       <%- body %>
