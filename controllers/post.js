@@ -27,8 +27,10 @@ router.get("/:id", async (req, res) => {
 
 //creates an post/post with the form data - when user click publish button
 router.post("/", async (req, res) => {
+  //check if the user is authorized
   if (!res.locals.user) {
-    return res.status(401).json({ error: "Unauthorized" });
+    //redirect to the sign-up page if not authorized
+    return res.redirect("/users/login");
   }
   //create post object with columns
   const post = await db.post.create({
