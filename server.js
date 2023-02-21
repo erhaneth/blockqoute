@@ -67,14 +67,18 @@ app.get("/", async (req, res) => {
 app.use("/users", require("./controllers/users"));
 app.use("/post", require("./controllers/post"));
 
-if (process.env.NODE_ENV === "production") {
-  app.listen(`0.0.0.0:$PORT`, () => {
-    console.log(`server is running on port ${PORT}`);
-    rowdyRes.print();
-  });
-} else {
-  app.listen(PORT, () => {
-    console.log(`server is running on port ${PORT}`);
-    rowdyRes.print();
-  });
-}
+// if (process.env.NODE_ENV === "production") {
+//   app.listen(`0.0.0.0:$PORT`, () => {
+//     console.log(`server is running on port ${PORT}`);
+//     rowdyRes.print();
+//   });
+// } else {
+//   app.listen(PORT, () => {
+//     console.log(`server is running on port ${PORT}`);
+//     rowdyRes.print();
+//   });
+// }
+app.listen(PORT, () => {
+  console.log(`server is running on port ${PORT}`);
+  rowdyRes.print();
+});
