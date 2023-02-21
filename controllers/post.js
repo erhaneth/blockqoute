@@ -78,14 +78,13 @@ router.get("/:id/edit", async (req, res) => {
 router.put("/:id", async (req, res) => {
   try {
     let postBody = await db.post.findByPk(req.params.id);
-    console.log(postBody);
+
     if (postBody.userId !== res.locals.user.dataValues.id) {
       res.render("notauthorized.ejs");
       return;
     }
     postBody.body = req.body.postBody;
-    postBody.quote = req.body.quote;
-    postBody.author = req.body.author;
+    console.log(req.body.quote);
     postBody.save();
 
     res.redirect("/");
