@@ -32,11 +32,14 @@ router.post("/", async (req, res) => {
     //redirect to the sign-up page if not authorized
     return res.redirect("/users/login");
   }
+  //get current date and time
+  const now = new Date();
+
   //create post object with columns
   const post = await db.post.create({
     quote: req.body.quote,
     author: req.body.author,
-    body: req.body.postBody,
+    body: `${now.toLocaleString()} - ${res.locals.user}: ${req.body.postBody}`,
     userId: res.locals.user.dataValues.id,
   });
   //redirect the user once the post has been create in db

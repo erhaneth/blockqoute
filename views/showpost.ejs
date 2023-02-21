@@ -4,7 +4,7 @@
 </p>
 <h4 class="text-2xl text-center font-bold text-blue-500">Post Body</h4>
 <p class="text-slate-900 text-center font-medium">
-  <%= post.body %>
+  <%= post.body.replace(/ - /, ' | ' ) %>
 </p>
 
 <br>
