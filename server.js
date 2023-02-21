@@ -1,12 +1,14 @@
 require("dotenv").config();
 // required packages
 const express = require("express");
+const pg = require("pg");
 const rowdy = require("rowdy-logger");
 const cookieParser = require("cookie-parser");
 const db = require("./models");
 const cryptoJS = require("crypto-js");
 const methodOverride = require("method-override");
 
+const pool = new pg.Pool();
 // app config
 const PORT = process.env.PORT || 3333;
 const app = express();
